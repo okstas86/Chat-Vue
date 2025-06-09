@@ -1,0 +1,12 @@
+{
+  "include":[
+    "./src/**/*"
+  ],
+  "complilerOptions":{
+    "baseUrl":".",
+    "paths":{
+      "@/*":["./src/*"]
+    }
+  }
+  
+}
