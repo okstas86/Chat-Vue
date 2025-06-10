@@ -4,7 +4,7 @@ const PORT = 5000
 const http = require('http')
 const server = http.createServer(app)
 const cors = require('cors')
-const io = require('socket.io')(http, {
+const io = require('socket.io')(server, {
   cors: {
     origin: "*",
   }
@@ -19,6 +19,9 @@ app.get('api',(req, res) => {
 
 io.on('connection', (socket) => {
   console.log(`${socket.id} user connected`)
+  socket.on('message', data =>
+    io.emit('response',data)
+  )
   socket.on('disconnect', () =>
     console.log(`${socket.id} user disconnected`)
     )

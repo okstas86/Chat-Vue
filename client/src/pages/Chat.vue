@@ -6,7 +6,7 @@
 
       <main class="flex-1 flex flex-col">
         <div class="p-4 bg-white shadow-md border-b">
-          <Body />
+          <Body :messages="messages" />
         </div>
 
         <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
@@ -20,6 +20,17 @@
 import Sidebar from '@/components/Sidebar.vue';
 import Body from '@/components/Body.vue';
 import MessageBlock from '@/components/MessageBlock.vue';
+import socket from '../socket';
+import { ref } from 'vue';
+
+
+const messages = ref([])
+
+socket.on('response', (data) => {
+    console.log('Пришло сообщение от сервера:', data)
+  messages.value.push(data)
+})
+
 
 </script>
 
